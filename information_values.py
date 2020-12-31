@@ -32,7 +32,7 @@ def iv_numeric(target, feature, feature_name='feature', bins=10, return_table=Fa
     t['goods'] = t['count'] - t['bads']
     t['bads_pct'] = t['bads'].div(t['bads'].sum())
     t['goods_pct'] = t['goods'].div((t['goods']).sum())
-    t['woe'] = t['goods_pct'].div(t['bads_pct'])
+    t['woe'] = np.log(t['goods_pct'].div(t['bads_pct']))
     t['iv'] = (t['goods_pct'] - t['bads_pct']) * t['woe']
     if return_table:
         return t
@@ -65,7 +65,7 @@ def iv_categorical(target, feature, feature_name='feature', return_table=False):
     t['goods'] = t['count'] - t['bads']
     t['bads_pct'] = t['bads'].div(t['bads'].sum())
     t['goods_pct'] = t['goods'].div((t['goods']).sum())
-    t['woe'] = t['goods_pct'].div(t['bads_pct'])
+    t['woe'] = np.log(t['goods_pct'].div(t['bads_pct']))
     t['iv'] = (t['goods_pct'] - t['bads_pct']) * t['woe']
     t['iv'].sum()
     if return_table:
