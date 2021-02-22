@@ -24,6 +24,9 @@ def iv_numeric(target, feature, feature_name='feature', bins=10, return_table=Fa
             return_table : boolean, default `False`
                 If `return_table == True`, it will return a summary table with the results grouped by bins.
                 If `return_table == False`, it will only return a list in the form `[feature, information value]`
+    GitHub
+    ------
+            https://github.com/ArturoSbr/
     '''
     t = pd.DataFrame({feature_name:feature,'target':target})
     t['bin'] = pd.qcut(t[feature_name], bins, labels=False, duplicates='drop') + 1
@@ -58,6 +61,9 @@ def iv_categorical(target, feature, feature_name='feature', return_table=False):
             return_table : boolean, default `False`
                 If `return_table == True`, it will return a summary table with the results grouped by bins.
                 If `return_table == False`, it will only return a list in the form `[feature, information value]`
+    GitHub
+    ------
+            https://github.com/ArturoSbr/
     '''
     t = pd.DataFrame({feature_name:feature, 'target':target})
     t = t.groupby(feature_name).agg({'target':['size','sum']}).reset_index()
